@@ -67,8 +67,15 @@ package com.creativebottle.starlingmvc.beans
 
 				for each(var member:ClassMember in injections)
 				{
-					if (bean.instance[member.name] == beanIn.instance)
-						bean.instance[member.name] = null;
+                    try
+                    {
+                        if (bean.instance[member.name] == beanIn.instance)
+                            bean.instance[member.name] = null;
+                    }catch (e : Error)
+                    {
+                        trace ("Tried to null setter: " + member.name);
+                    }
+
 				}
 
 			}
