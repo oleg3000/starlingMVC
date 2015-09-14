@@ -204,7 +204,19 @@ class EventHandler
 
 		if (handlerArgs.length > 0)
 		{
-			handler.apply(null, handlerArgs);
+			try
+			{
+				handler.apply(null, handlerArgs);
+			}catch (e : Error)
+			{
+                if (e is ArgumentError)
+                {
+                    trace( e.name, e.errorID, e.message);
+                }else{
+                    throw e;
+                }
+			}
+
 		}
 		else
 		{
