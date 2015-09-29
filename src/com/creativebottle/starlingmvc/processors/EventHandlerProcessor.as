@@ -164,6 +164,12 @@ import com.creativebottle.starlingmvc.reflection.MetaTag;
 import com.creativebottle.starlingmvc.reflection.MetaTagArg;
 import com.creativebottle.starlingmvc.utils.StringUtils;
 
+import es.xperiments.media.StageWebViewBridge;
+
+import flash.system.Capabilities;
+
+import starling.core.Starling;
+
 import starling.events.Event;
 
 class EventHandler
@@ -172,6 +178,8 @@ class EventHandler
 
 	private var handler:Function;
 	private var args:Array;
+
+	private var _webView : StageWebViewBridge;
 
 	public function EventHandler(type:String, handler:Function, tag:MetaTag)
 	{
@@ -213,7 +221,15 @@ class EventHandler
                 {
                     trace( e.name, e.errorID, e.message);
                 }else{
-                    throw e;
+
+					if (!Capabilities.isDebugger)
+					{
+						drawExceptionOnStage(e);
+					}else
+					{
+                    	throw e;
+					}
+
                 }
 			}
 
@@ -222,5 +238,12 @@ class EventHandler
 		{
 			handler(event);
 		}
+	}
+
+	private function drawExceptionOnStage(e : Error) : void
+	{
+		_webView = new StageWebViewBridge(0, 0, Starling.current.nativeStage.stageWidth,  Starling.current.nativeStage.stageHeight);
+		_webView.loadLocalString(e.errorID + " " + e.message + "<br>" + e.getStackTrace());
+		_webView.visible = true;
 	}
 }

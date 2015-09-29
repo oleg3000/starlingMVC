@@ -8,6 +8,9 @@
             <entry library-id="90818bdc-fea2-4fe8-a26a-2af3db2d94e5">
               <dependency linkage="Merged" />
             </entry>
+            <entry library-id="5d2f15c8-ef64-4cb3-b9f5-e0b5f4fe1ea2">
+              <dependency linkage="External" />
+            </entry>
           </entries>
           <sdk name="AirSDK18" />
         </dependencies>
@@ -31,6 +34,16 @@
         <properties id="90818bdc-fea2-4fe8-a26a-2af3db2d94e5" />
         <CLASSES>
           <root url="jar://$MODULE_DIR$/../Starling-Framework/starling/bin/starling.swc!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library type="flex">
+        <properties id="5d2f15c8-ef64-4cb3-b9f5-e0b5f4fe1ea2" />
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../StageWebViewBridge/out/StageWebViewBridge.swc!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
